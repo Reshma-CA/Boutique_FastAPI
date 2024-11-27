@@ -1,8 +1,9 @@
+from typing import List
 from fastapi import APIRouter, Depends, status, File, UploadFile, Form, HTTPException
 from sqlalchemy.orm import Session
 from db.session import get_db
-from schemas.blog import CreateBoutique, ShowBoutique
-from db.repository.boutique import create_new_boutique
+from schemas.blog import CreateBoutique, ShowBoutique,UpdateBoutique
+from db.repository.boutique import create_new_boutique,retrieve_boutique,list_boutique,update_boutique_by_id
 import os
 from uuid import uuid4
 
@@ -51,4 +52,25 @@ async def create_boutique(
     )
     
     boutique = create_new_boutique(boutique=boutique_data, db=db, author_id=1)
+    return boutique
+
+@router.get("/{id}",response_model=ShowBoutique,status_code=status.HTTP_200_OK)
+def get_blog(id:int,db:Session = Depends(get_db)):
+    get_boutique = retrieve_boutique(id=id,db=db)
+    if not get_boutique:
+        raise HTTPException(status_code=404, detail=f"Boutique with {id } does not found")
+    return get_boutique
+
+
+@router.get('', response_model=List[ShowBoutique],status_code=status.HTTP_200_OK)
+def get_all_boutique(db:Session = Depends(get_db)):
+    get_boutique = list_boutique(db=db)
+    return get_boutique
+
+@router.put("/{id}",response_model=ShowBoutique,status_code=status.HTTP_200_OK)
+def update_a_boutique(id:int,boutique:UpdateBoutique ,db:Session = Depends(get_db)):
+    boutique = update_boutique_by_id(id=id,boutique=boutique,db=db,author_id = 1)
+
+    if not boutique:
+        raise HTTPException(status_code=404, detail=f"Boutique with id {id} not found")
     return boutique

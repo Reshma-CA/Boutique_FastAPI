@@ -9,15 +9,9 @@ def include_router(app):
     app.include_router(api_router)
 
 
-# Define media directory
-# MEDIA_DIRECTORY = "media"
-# if not os.path.exists(MEDIA_DIRECTORY):
-#     os.makedirs(MEDIA_DIRECTORY)  # Create media directory if it doesn't exist
-
 def start_application():
     app = FastAPI(title=settings.PROJECT_TITLE)
     include_router(app)
-    # app.mount("/media", StaticFiles(directory=MEDIA_DIRECTORY), name="media")
     return app
 
 

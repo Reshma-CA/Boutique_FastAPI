@@ -16,6 +16,13 @@ class CreateBoutique(BaseModel):
             return values["title"].lower().replace(' ', '-')
         return slug
 
+class UpdateBoutique(CreateBoutique):
+    pass
+
+
+
+
+
 class ShowBoutique(BaseModel):
     title: str
     content: Optional[str]
