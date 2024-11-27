@@ -1,20 +1,17 @@
 from sqlalchemy.orm import Session
 from schemas.blog import CreateBoutique
 from db.models.boutique import Boutique
-from typing import Optional
 
-from fastapi import UploadFile, File
-import shutil
-
-def create_new_boutique(boutique:CreateBoutique,db:Session,author_id:int = 1):
-    boutique = Boutique(
-        title = boutique.title,
-        slug =  boutique.slug,
+def create_new_boutique(boutique: CreateBoutique, db: Session, author_id: int = 1):
+    boutique_model = Boutique(
+        title=boutique.title,
+        slug=boutique.slug or boutique.title.lower().replace(' ', '-'),
         content=boutique.content,
-        author_id = author_id
-
+        dress_picture=boutique.dress_picture,  # Store the image path
+        author_id=author_id
     )
-    db.add(boutique)
+    db.add(boutique_model)
     db.commit()
-    db.refresh(boutique)
-    return boutique
+    db.refresh(boutique_model)
+    return boutique_model
+
