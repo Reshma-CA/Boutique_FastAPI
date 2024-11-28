@@ -19,10 +19,6 @@ class CreateBoutique(BaseModel):
 class UpdateBoutique(CreateBoutique):
     pass
 
-
-
-
-
 class ShowBoutique(BaseModel):
     title: str
     content: Optional[str]

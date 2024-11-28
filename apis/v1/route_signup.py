@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from schemas.user import UserCreate,ShowUser
 from db.session import get_db
-from db.repository.user import create_new_user
+from db.repository.signup import create_new_user
 
 
 

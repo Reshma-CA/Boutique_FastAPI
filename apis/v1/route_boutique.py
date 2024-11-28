@@ -1,7 +1,9 @@
 from typing import List
 from fastapi import APIRouter, Depends, status, File, UploadFile, Form, HTTPException
 from sqlalchemy.orm import Session
+from db.models.user import User
 from db.session import get_db
+from apis.v1.route_login import get_current_user
 from schemas.blog import CreateBoutique, ShowBoutique,UpdateBoutique
 from db.repository.boutique import create_new_boutique,retrieve_boutique,list_boutique,update_boutique_by_id,delete_boutique_by_id
 import os
@@ -74,7 +76,8 @@ async def update_a_boutique(
     slug: str = Form(None),
     content: str = Form(None),
     image: UploadFile = File(None),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user:User = Depends(get_current_user)
 ):
     # First, retrieve the existing boutique
     existing_boutique = retrieve_boutique(id=id, db=db)
@@ -117,12 +120,17 @@ async def update_a_boutique(
     )
     
     # Update the boutique
-    updated_boutique = update_boutique_by_id(id=id, boutique=update_data, db=db, author_id=1)
+    updated_boutique = update_boutique_by_id(id=id, boutique=update_data, db=db, author_id=current_user.id)
+    if isinstance(updated_boutique,dict):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, 
+            detail=updated_boutique.get('error'))
+
     return updated_boutique
 
 @router.delete("/{id}")
-def delete_a_boutique(id:int,db:Session = Depends(get_db)): 
-    message = delete_boutique_by_id(id=id, db=db, author_id=1)
+def delete_a_boutique(id:int,db:Session = Depends(get_db),current_user:User = Depends(get_current_user)): 
+    message = delete_boutique_by_id(id=id, db=db, author_id=current_user.id)
     if message.get('error'):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=message.get('error'))
     return {"msg":message.get('msg')}

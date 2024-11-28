@@ -27,7 +27,10 @@ def update_boutique_by_id(id:int, boutique:UpdateBoutique, db:Session, author_id
     boutique_in_db = db.query(Boutique).filter(Boutique.id == id).first()
 
     if not boutique_in_db:
-        return None
+        return {"error" :f"Boutique with id {id} does not exist"}
+    if not boutique_in_db.author_id == author_id:
+        return {"error":f"Only the author can modify the boutique content"}
+
     
     # Update fields only if they are provided
     boutique_in_db.title = boutique.title 
@@ -52,6 +55,8 @@ def delete_boutique_by_id(id:int, db:Session,author_id:int):
     
     if not boutique_to_delete.first():
         return {"error": f"Could not find Boutique with id {id} in database"}
+    if not boutique_to_delete.first().author_id == author_id:
+        return {"error": "Only the author can delete the boutique"}
     
     boutique_to_delete.delete()
     db.commit()
