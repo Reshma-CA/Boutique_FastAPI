@@ -7,14 +7,10 @@ from .boutique import Boutique
 
 class User(Base):
     id = Column(Integer, primary_key=True, index=True)
+    username = Column(String,nullable=False)
     email = Column(String, nullable=False, unique=True, index=True)
     password = Column(String, nullable=False)
+    confirm_password = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
     boutiques = relationship("Boutique", back_populates="author")  # Rename to `boutiques`
 
-# class User(Base):
-#     id = Column(Integer, primary_key=True, index=True)
-#     email = Column(String, nullable=False, unique=True, index=True)
-#     password = Column(String, nullable=False)
-#     is_active = Column(Boolean, default=True)
-#     boutique = relationship("Boutique",back_populates="author")

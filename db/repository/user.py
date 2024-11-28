@@ -5,8 +5,10 @@ from core.hashing import Hasher
 
 def create_new_user(user:UserCreate,db:Session):
     user = User(
+        username=user.username,
         email = user.email,
         password = Hasher.get_password_hash(user.password),
+        confirm_password = Hasher.get_password_hash(user.confirm_password),
         is_active = True,
 
     )

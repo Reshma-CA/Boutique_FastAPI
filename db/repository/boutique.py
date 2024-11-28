@@ -23,15 +23,36 @@ def list_boutique(db:Session):
     boutiques = db.query(Boutique).filter(Boutique.is_active == True).all()
     return boutiques
 
-def update_boutique_by_id(id:int,boutique:UpdateBoutique,db:Session,author_id:int=1): 
-    bloutique_in_db = db.query(Boutique).filter(Boutique.id == id).first()
+def update_boutique_by_id(id:int, boutique:UpdateBoutique, db:Session, author_id:int=1): 
+    boutique_in_db = db.query(Boutique).filter(Boutique.id == id).first()
 
-    if not bloutique_in_db:
+    if not boutique_in_db:
         return None
     
-    bloutique_in_db.title = boutique.title 
-    bloutique_in_db.content = boutique.content
-    bloutique_in_db.dress_picture = boutique.dress_picture  # Update the image path
-    db.add(bloutique_in_db)
+    # Update fields only if they are provided
+    boutique_in_db.title = boutique.title 
+    
+    if boutique.content is not None:
+        boutique_in_db.content = boutique.content
+    
+    if boutique.dress_picture is not None:
+        boutique_in_db.dress_picture = boutique.dress_picture
+    
+    # Update slug, using existing or generating a new one
+    boutique_in_db.slug = boutique.slug or boutique.title.lower().replace(' ', '-')
+    
+    db.add(boutique_in_db)
     db.commit()
-    return bloutique_in_db
+    db.refresh(boutique_in_db)
+    return boutique_in_db
+
+
+def delete_boutique_by_id(id:int, db:Session,author_id:int):
+    boutique_to_delete = db.query(Boutique).filter(Boutique.id == id)
+    
+    if not boutique_to_delete.first():
+        return {"error": f"Could not find Boutique with id {id} in database"}
+    
+    boutique_to_delete.delete()
+    db.commit()
+    return {"msg": f"Deleted blog with id {id} in database"}
