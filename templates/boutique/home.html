@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+{% with aler=alert %}
+{% include "components/alert.html" %}
+{% endwith %}
+
+
 <h2 style="text-align: center; padding: 8px; color:purple;"> Hi {{person_name}}, Welcome to the boutique world</h2>
 
 <div class="container mt-4">
