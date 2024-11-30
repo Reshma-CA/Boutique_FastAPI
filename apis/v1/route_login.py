@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends,status,HTTPException,Request
-
+from typing import Dict
 from sqlalchemy.orm import Session
+
 
 from core.hashing import Hasher
 from schemas.user import UserCreate,ShowUser
@@ -36,3 +37,28 @@ def get_current_user(request: Request, db: Session = Depends(get_db)) -> ShowUse
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
+
+@router.post("/")
+async def login_user(
+    email: str, 
+    password: str, 
+    db: Session = Depends(get_db)) -> Dict[str, str]:
+    # Find user by email
+    user = get_user_by_email(email=email, db=db)
+    
+    # Check if user exists
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, 
+            detail="Invalid email"
+        )
+    
+    # Verify password
+    if not Hasher.verify_password(password, user.password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, 
+            detail="Invalid password"
+        )
+    
+    # Return successful login response
+    return {"msg": "Login successful", "username": user.username}

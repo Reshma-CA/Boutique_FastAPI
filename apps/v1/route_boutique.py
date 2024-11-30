@@ -15,7 +15,7 @@ router = APIRouter()
 def home(request: Request, db: Session = Depends(get_db)):
     all_boutique = list_boutique(db=db)
     context = {"request": request,"all_boutique": all_boutique}
-    return templates.TemplateResponse("boutique/home.html",context = context ) # what is meta data
+    return templates.TemplateResponse("boutique/index.html",context = context ) # what is meta data
 
 
 @router.get("/app/boutique/{id}")

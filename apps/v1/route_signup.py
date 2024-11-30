@@ -17,13 +17,16 @@ def signup(request:Request):
     return templates.TemplateResponse("auth/signup.html", {"request": request})
 
 @router.post("/signup")
-def signup(request:Request,username:str = Form(...),email:str = Form(...),
-           password:str = Form(...),confirm_password:str = Form(...),db:Session = Depends(get_db)):
+def signup(request:Request, username:str = Form(...), email:str = Form(...),
+           password:str = Form(...), confirm_password:str = Form(...), db:Session = Depends(get_db)):
     errors = []
     try:
-        user = UserCreate(username=username,email=email,password=password,confirm_password=confirm_password)
-        create_new_user(user=user,db=db)
-        return templates.TemplateResponse("auth/login.html", {"request": request})
+        user = UserCreate(username=username, email=email, password=password, confirm_password=confirm_password)
+        create_new_user(user=user, db=db)
+        return templates.TemplateResponse("auth/login.html", {
+            "request": request, 
+            "success_message": "Account created successfully! Please log in."
+        })
 
     except ValidationError as e:
         error_list = json.loads(e.json())

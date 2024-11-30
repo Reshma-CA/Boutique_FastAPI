@@ -6,16 +6,16 @@
 
 {% block content %}
 
-{% include 'components/navbar2.html' %}
+{% include 'components/navbar.html' %}
 
-<h2 style="text-align: center; padding: 8px; color:purple;"> Hi {{username}}, Welcome to the boutique world</h2>
+<h2 style="text-align: center; padding: 8px; color:purple;"> Hi, Welcome to the boutique world</h2>
 
 <div class="container mt-4">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         {% for item in all_boutique %}
         <div class="col">
             <div class="card h-100" style="width: 90%;">
-                <img src="{{ item.dress_picture }}" class="card-img-top" alt="..." style="height: 500px; width: 100%; object-fit: cover;">
+                <img src="{{ item.dress_picture }}" class="card-img-top" alt="..." style="height: 400px; width: 100%; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <p class="card-text"> {{ item.content | truncate(120, True) }}</p>  <!-- Use truncate filter -->
