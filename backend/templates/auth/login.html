@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/login.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+
+        <!-- Form for login -->
+        <form method="POST">
+            <!-- Email Field -->
+            <label for="email">Email:</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                value="{{ email }}" 
+                placeholder="Enter your email" 
+                required>
+            <span id="email-error" class="error-message"></span>
+
+            <!-- Password Field -->
+            <label for="password">Password:</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                value = "{{password}}"
+                placeholder="Enter your password" 
+                required>
+            <span id="password-error" class="error-message"></span>
+
+            <!-- Submit Button -->
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Links to signup or other actions -->
+        <p class="info-text">
+            Don't have an account? 
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+        </p>
+
+        <!-- Message block for displaying error messages -->
+        <div class="message-container">
+            {% if error %}
+                <div class="error-message">
+                    {% for item in error %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
+                </div>
+                {% elif success_message %}
+                <div class="success-message">{{ success_message }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

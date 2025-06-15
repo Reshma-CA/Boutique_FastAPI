@@ -1,0 +1,40 @@
+# Environments
+/venv
+venv
+/env
+/.env
+/.env.*
+.env
+env
+
+# Python
+__pycache__/
+*.pyc
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+*.eggs/
+
+
+# Logs
+*.log
+*.out
+*.err
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+
+# Migrations
+test_db.db
+*/migrations/*.pyc
+*/migrations/*.pyo
+*/migrations/*.py[cod]
+*/migrations/__pycache__/
