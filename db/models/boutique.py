@@ -2,7 +2,7 @@ from datetime import datetime
 from sqlalchemy import Column,Integer,String,Text,Boolean,DateTime,ForeignKey
 from sqlalchemy.orm import relationship
 
-from db.base_class import Base
+from backend.db.base_class import Base
 
 
 class Boutique(Base):

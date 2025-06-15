@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from apis.v1 import route_signup
-from apis.v1 import route_boutique
-from apis.v1 import route_login
+from backend.apis.v1 import route_signup
+from backend.apis.v1 import route_boutique
+from backend.apis.v1 import route_login
 
 api_router = APIRouter()
 

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from db.models.user import User
+from backend.db.models.user import User
 from fastapi import APIRouter, HTTPException,status
 
 def get_user_by_email(email:str, db:Session):

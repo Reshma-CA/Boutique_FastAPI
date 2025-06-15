@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from schemas.user import UserCreate
-from db.models.user import User
-from core.hashing import Hasher
+from backend.schemas.user import UserCreate
+from backend.db.models.user import User
+from backend.core.hashing import Hasher
 from fastapi import HTTPException, status
 def create_new_user(user: UserCreate, db: Session):
     # Validate passwords

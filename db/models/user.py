@@ -1,4 +1,4 @@
-from db.base_class import Base
+from backend.db.base_class import Base
 from sqlalchemy import Boolean,Column,String,Integer
 from sqlalchemy.orm import relationship
 

@@ -3,9 +3,9 @@ from fastapi import APIRouter, Depends,status
 from sqlalchemy.orm import Session
 
 
-from schemas.user import UserCreate,ShowUser
-from db.session import get_db
-from db.repository.signup import create_new_user
+from backend.schemas.user import UserCreate,ShowUser
+from backend.db.session import get_db
+from backend.db.repository.signup import create_new_user
 
 
 

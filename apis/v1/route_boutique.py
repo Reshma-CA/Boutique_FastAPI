@@ -1,11 +1,11 @@
 from typing import List
 from fastapi import APIRouter, Depends, status, File, UploadFile, Form, HTTPException
 from sqlalchemy.orm import Session
-from db.models.user import User
-from db.session import get_db
-from apis.v1.route_login import get_current_user
-from schemas.blog import CreateBoutique, ShowBoutique,UpdateBoutique
-from db.repository.boutique import create_new_boutique,retrieve_boutique,list_boutique,update_boutique_by_id,delete_boutique_by_id
+from backend.db.models.user import User
+from backend.db.session import get_db
+from backend.apis.v1.route_login import get_current_user
+from backend.schemas.blog import CreateBoutique, ShowBoutique,UpdateBoutique
+from backend.db.repository.boutique import create_new_boutique,retrieve_boutique,list_boutique,update_boutique_by_id,delete_boutique_by_id
 import os
 from uuid import uuid4
 

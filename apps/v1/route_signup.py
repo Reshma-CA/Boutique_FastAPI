@@ -3,13 +3,14 @@ from fastapi import APIRouter,Request,Depends,responses,status,Form
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
-from db.session import get_db
-from schemas.user import UserCreate
-from db.repository.signup import create_new_user
-from pydantic.error_wrappers import ValidationError
+from backend.db.session import get_db
+from backend.schemas.user import UserCreate
+from backend.db.repository.signup import create_new_user
+from pydantic import ValidationError
 
 
-templates = Jinja2Templates(directory="templates")
+
+templates = Jinja2Templates(directory="backend/templates")
 router = APIRouter()
 
 @router.get("/signup")

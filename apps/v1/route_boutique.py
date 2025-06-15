@@ -2,13 +2,13 @@ from fastapi import APIRouter
 from fastapi import Request,Depends, HTTPException
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from db.repository.boutique import list_boutique,retrieve_boutique
-from db.session import get_db
+from backend.db.repository.boutique import list_boutique,retrieve_boutique
+from backend.db.session import get_db
 from typing import Optional
 
 
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="backend/templates")
 router = APIRouter()
 
 @router.get("/")

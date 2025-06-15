@@ -3,10 +3,10 @@ from typing import Dict
 from sqlalchemy.orm import Session
 
 
-from core.hashing import Hasher
-from schemas.user import UserCreate,ShowUser
-from db.session import get_db
-from db.repository.login import get_user_by_email
+from backend.core.hashing import Hasher
+from backend.schemas.user import UserCreate,ShowUser
+from backend.db.session import get_db
+from backend.db.repository.login import get_user_by_email
 
 
 router = APIRouter()

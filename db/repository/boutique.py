@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from schemas.blog import CreateBoutique,UpdateBoutique
-from db.models.boutique import Boutique
+from backend.schemas.blog import CreateBoutique,UpdateBoutique
+from backend.db.models.boutique import Boutique
 
 def create_new_boutique(boutique: CreateBoutique, db: Session, author_id: int = 1):
     boutique_model = Boutique(
