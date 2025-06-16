@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Form</title>
     <link rel="stylesheet" href="{{ url_for('static', path='css/register.css') }}">
+<style>
+    .success-message {
+    color: #155724;
+    
+}
+.error-message{
+    color:rgb(246, 10, 10);
+    
+}
+</style>
+     
 </head>
 <body>
     <div class="signup-wrapper">
@@ -37,15 +48,17 @@
             <a href="{{ url_for('login') }}">Sign In</a>
         </p>
 
-
-            <!-- For message display -->
-             
-            <!-- {% if success_message %}
-            <div class="success-message">{{ success_message }}</div>
-            <div class="login-link">
-                <p>Already have an account? <a href="/login">Log in here</a></p>
-            </div>
-        {% endif %} -->
+ <!-- Message block for displaying error messages -->
+        <div class="message-container">
+            {% if error %}
+                <div class="error-message">
+                    {% for item in error %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
+                </div>
+                {% elif success_message %}
+                <div class="success-message">{{ success_message }}</div>
+            {% endif %}
     </div>
 
     <script src="{{ url_for('static', path='js/user_js/signup.js') }}"></script>

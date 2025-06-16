@@ -67,6 +67,7 @@ def get_blog(id:int,db:Session = Depends(get_db)):
 @router.get('', response_model=List[ShowBoutique],status_code=status.HTTP_200_OK)
 def get_all_boutique(db:Session = Depends(get_db)):
     get_boutique = list_boutique(db=db)
+    
     return get_boutique
 
 @router.put("/{id}", response_model=ShowBoutique, status_code=status.HTTP_200_OK)

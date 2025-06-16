@@ -24,7 +24,7 @@ def signup(request:Request, username:str = Form(...), email:str = Form(...),
     try:
         user = UserCreate(username=username, email=email, password=password, confirm_password=confirm_password)
         create_new_user(user=user, db=db)
-        return templates.TemplateResponse("auth/login.html", {
+        return templates.TemplateResponse("auth/signup.html", {
             "request": request, 
             "success_message": "Account created successfully! Please log in."
         })

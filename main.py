@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from backend.apis.base import api_router
 from backend.apps.base import app_router
 from starlette.middleware.sessions import SessionMiddleware
-
+from fastapi.responses import FileResponse
 load_dotenv()
 
 
@@ -49,7 +49,17 @@ app = start_application()
 @app.get("/")
 def root():
     return {"msg": "Welcome to the FastAPI Boutique"}
+@app.get('/about')
+def about():
+    return FileResponse("backend/static/static_templates/about.html")
 
+@app.get('/blog')
+def about():
+    return FileResponse("backend/static/static_templates/blog.html")
+
+@app.get('/contact')
+def about():
+    return FileResponse("backend/static/static_templates/contact_us.html") 
 
 # .\venv\Scripts\activate
 #  uvicorn main:app --reload --port 8001

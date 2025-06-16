@@ -44,18 +44,7 @@
             <a href="{{ url_for('signup') }}">Sign Up</a>
         </p>
 
-        <!-- Message block for displaying error messages -->
-        <div class="message-container">
-            {% if error %}
-                <div class="error-message">
-                    {% for item in error %}
-                        <p>{{ item }}</p>
-                    {% endfor %}
-                </div>
-                {% elif success_message %}
-                <div class="success-message">{{ success_message }}</div>
-            {% endif %}
-        </div>
+        
     </div>
 </body>
 </html>

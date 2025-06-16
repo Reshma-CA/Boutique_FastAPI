@@ -8,23 +8,171 @@
 
 {% include 'components/navbar2.html' %}
 
-<h2 style="text-align: center; padding: 8px; color:purple;"> Hi {{username}}, Welcome to the boutique world</h2>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      color: #fff5cc;
+      font-family: Arial, sans-serif;
+      background-image: url('/static/images/boutiques_background.jpg');  /* <- Change to your background picture */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    h1.text-center {
+    color:rgb(245, 11, 140);  /* or whatever color you want */
+    font-size: 1.5rem;
+    font-weight: bold;
+    }
+    .card {
+      background: #fff5cc90;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 0.5);
+      color: #9333EA;
+      border: none;
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgb(0 0 0 / 0.7);
+    }
+    .card-img-top {
+      border-radius: 20px 20px 0 0;
+      height: 450px;
+      object-fit: cover;
+    }
+    .card-title {
+      color: #9333EA;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .card-text {
+      color: #9333EA;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .btn {
+      color: #fff5cc;
+      background: #9333EA;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #b04de5;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
 
-<div class="container mt-4">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-        {% for item in all_boutique %}
-        <div class="col">
-            <div class="card h-100" style="width: 90%;">
-                <img src="{{ item.dress_picture }}" class="card-img-top" alt="..." style="height: 500px; width: 100%; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ item.title }}</h5>
-                    <p class="card-text"> {{ item.content | truncate(120, True) }}</p>  <!-- Use truncate filter -->
-                    <p class="card-text">Created date: {{ item.created_at.strftime('%Y-%m-%d') }}</p>  
-                    <a href="/app/boutique/{{item.id}}" class="btn btn-primary">More Details</a>
-                </div>
-            </div>
+  <div class="container py-5">
+    <h2 style="text-align: center; padding: 8px; color:purple;"> Hi {{username}}, Welcome to the boutique world</h2>
+    <h1 class="text-center mb-5">Discover Our Boutiques</h1>
+
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique8.jpg" class="card-img-top" alt="Pooja Boutique">
+          <div class="card-body">
+            <h5 class="card-title">Yellow Boutique</h5>
+            <p class="card-text">Creative process and stories that bring our boutique to life.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
         </div>
-        {% endfor %}
-    </div>
-</div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique9.jpg" class="card-img-top" alt="Sana Styles">
+          <div class="card-body">
+            <h5 class="card-title">Yami Boutique</h5>
+            <p class="card-text">Curated ethnic and casual wear for all your moods.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique1.jpg" class="card-img-top" alt="Riya Couture">
+          <div class="card-body">
+            <h5 class="card-title">Purple Boutique</h5>
+            <p class="card-text">Handcrafted traditional attire with a modern twist.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique3.jpg" class="card-img-top" alt="Anika Styles">
+          <div class="card-body">
+            <h5 class="card-title">Beauty Boutique</h5>
+            <p class="card-text">Elegant designer sarees for every celebration.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique2.jpg" class="card-img-top" alt="Prerna's Wardrobe">
+          <div class="card-body">
+            <h5 class="card-title">Real Boutique</h5>
+            <p class="card-text">Affordable fashion for all ages, sizes, and occasions.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutque4.jpg" class="card-img-top" alt="Krishna Couture">
+          <div class="card-body">
+            <h5 class="card-title">Anu Radha Boutique</h5>
+            <p class="card-text">Hand-embroidered, rich fabrics for your special moments.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique5.jpg" class="card-img-top" alt="Amara Styles">
+          <div class="card-body">
+            <h5 class="card-title">Anokha Boutique</h5>
+            <p class="card-text">Dream-like wedding and festive outfits made just for you.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique6.jpg" class="card-img-top" alt="Saheli Creations">
+          <div class="card-body">
+            <h5 class="card-title">Pretty Boutique</h5>
+            <p class="card-text">Where tradition meets creativity with bespoke designs.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/static/images/boutique7.jpg" class="card-img-top" alt="Nayeri Styles">
+          <div class="card-body">
+            <h5 class="card-title">Pournami Boutique</h5>
+            <p class="card-text">Cultural heritage woven into every piece.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </div>
+      </div>
+
 {% endblock %}

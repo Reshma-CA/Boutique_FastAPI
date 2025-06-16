@@ -46,5 +46,5 @@ async def login(
 async def logout_user(request: Request):
     request.session.clear()
     return templates.TemplateResponse(
-        "boutique/index.html", {"request": request}
+        "boutique/home.html", {"request": request}
     )
