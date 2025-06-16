@@ -1,5 +1,7 @@
 # FastAPI Boutique Project (Fast API)
 
+## Project screen record video : https://youtu.be/pIlb0WnpENI
+
 ### Picture No : 1  
 ![boutgit1](https://github.com/user-attachments/assets/0bb61ae6-7fc5-4897-8010-c647297f3bb8)
 
