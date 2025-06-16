@@ -15,7 +15,7 @@ Allows users to create a new account or log in securely to manage their profiles
 ## 3, Boutique Details:
 Each boutique’s profile includes its name, logo, photos, description, location, and a portfolio of its products — letting users appreciate its unique style before making a visit or placing an order.
 
-## 4,U ser Authentication:
+## 4, User Authentication:
 Implemented with password hashing to keep user data safe and enable a smooth, secured login process.
 
 ## 5, Scalable API:
